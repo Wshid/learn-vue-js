@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        // Data Binding : 값이 변경될 때마다 자동으로 감지하여 View를 업데이트 한다. 
+
+        let div = document.querySelector('#app');
+        // div.innerHTML = 'hello world';
+        let viewModel = {};
+
+        /**
+          * 즉시 실행 함수 : https://developer.mozilla.org/ko/docs/Glossary/IIFE
+          * init, render가 app logic에 노출되지 않도록 함
+          * 다른 scope에 넣어주는 것
+          * 대부분의 opensource가 이렇게 관리 됨
+          */
+        (function () {
+            function init() {
+                Object.defineProperty(viewModel, 'str', {
+                    // 속성에 접근시 동작 정의
+                    get: function () {
+                        console.log('접근');
+                    },
+                    // 값 할당시 동작 정의
+                    set: (newValue) => {
+                        console.log('할당', newValue);
+                        render(newValue);
+                    }
+                });
+            }
+
+            function render(value) {
+                div.innerHTML = value;
+            }
+
+            init();
+
+        })();
+
+
+
+        // 작업 결과 : ![image](https://user-images.githubusercontent.com/10006290/64902292-8c375b80-d6df-11e9-992d-0578c6f510e6.png)
+        // 값을 바꿀 때마다 화면에 값이 적용 된다
+
+    </script>
+</body>
+
+</html>
