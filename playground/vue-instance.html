@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var options = new Vue({ // 생성자 내부에는 객체 들어간다.
+            el: '#app', // #app에 대한 부분을 태깅하는 것
+            data : {
+                message: 'hi'
+            },
+            methods: {
+
+            },
+            created: function() {
+
+            }
+        }); // vm이 관용적으로 쓰임
+        // 이렇게만 해도 Vue에서 제공하는 기능을 확인할 수 있음.
+
+        // 생성자 함수 : 대문자로 시작한다(ex. function Person() {...} )
+        // ![image](https://user-images.githubusercontent.com/10006290/64915822-041e8800-d7ab-11e9-9771-21600842da13.png)
+        // https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Obsolete_Pages/Core_JavaScript_1.5_Guide/Creating_New_Objects/Using_a_Constructor_Function
+
+        var vm = new Vue(options);
+    </script>
+
+</body>
+</html>
