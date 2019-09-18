@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <app-header v-on:하위 컴포넌트 발생 이벤트 이름="상위 컴포넌트 메서드 이름"></app-header> -->
+        <app-header v-on:pass="logText"></app-header>
+        <app-content v-on:adding="dataAdd"></app-content>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+    var appHeader = {
+        // 버튼을 클릭했을때 실행할 함수 지정
+        template: '<button v-on:click="passEvent">click me</button>',
+        methods:{
+            passEvent: function() {
+                // $emit으로 pass 이벤트를 발생할 수 있음
+                this.$emit('pass');
+            }
+        }
+    }
+
+    var appContent = {
+        template : '<button v-on:click="addNumber">add</button>',
+        methods:{
+            addNumber: function() {
+                this.$emit('adding');
+            }
+        }
+    }
+    var vm = new Vue({
+        el: '#app',
+        components:{
+            'app-header': appHeader,
+            'app-content': appContent
+        },
+        methods:{
+            logText: () => {
+                console.log('hi');
+            },
+            // es6가 일부 정상 작동하지 않음. function()으로 문법 사용해야 함
+            dataAdd: function() {
+                this.num = this.num +1;
+                console.log(this.num);
+            }
+        }, data:{
+            num: 10
+        }
+    });
+    // vue에서의 this, method 내부에서 this는 해당 객체의 변수를 참조한다고 함
+    // data.num으로 참조하지만, 실제 Vue 객체의 상위 레벨단으로 변수가 정의됨을 개발자도구에서 확인 가능
+    // this 관련글 : https://www.w3schools.com/js/js_this.asp
+    // this 관련글2 : https://medium.com/quick-code/understanding-the-this-keyword-in-javascript-cb76d4c7c5e8
+    </script>
+</body>
+</html>
