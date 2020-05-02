@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- router-link*2를 입력하여 자동완성 가능 -->
+            <!-- 자동으로 a 태그로 변환되어 출력됨 -->
+            <router-link to="/login">Login</router-link>
+            <!-- <a href="/login">login</a>-->
+            <router-link to="/main">Main</router-link>
+        </div>
+
+        <!-- 라우터가 가지고 있는 태그, view 인스턴스에 router 인스턴스에 연결 -->
+        <router-view></router-view>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var LoginComponent = {
+            template: '<div>login</div>'
+        }
+
+        var MainComponent = {
+            template: '<div>main</div>'
+        }
+
+        // vue와 router를 가지고 인스턴스 생성
+        var router = new VueRouter({
+            // routes[] : 페이지의 라우팅 정보가 들어감
+            routes: [
+                // 페이지별 객체 정보를 작성
+                // key,value 로 정의
+                // path : 페이지의 url 이름 정의
+                // component : 해당 url에서 표시될 컴포넌트
+                {
+                    path: '/login',
+                    component: LoginComponent
+                }, 
+                {
+                    path : '/main',
+                    component: MainComponent
+                },
+            ]
+        });
+
+        // 뷰 인스턴스, #app에 정의 하며, router가 이 이내에서 유효함
+        new Vue({
+            el : '#app',
+            router: router
+        });
+    </script>
+</body>
+</html>
