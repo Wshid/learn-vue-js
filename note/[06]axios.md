@@ -47,3 +47,19 @@
     ```javascript
     getDate().then().catch(...) // 이와 같이 구성 가능
     ```
+### HTTP Request
+- Axios로 전송
+- 개발자도구
+  - XHR
+    - **비동기** 전송만 필터링해서 확인할 수 있음
+    - General 
+      - Request URL : 주소
+      - Request Headers : 부가적인 정보
+      - Response Headers : 서버에서 받은 부가적인 정보
+- GET은 요청을 하는것이기 때문에
+  - Response의 정보를 확인할 수 있음
+  - preview은 pretty하게 보여줌
+
+### 참고 링크
+- [프런트엔드 개발자가 알아야하는 HTTP 프로토콜 Part 1](https://joshua1988.github.io/web-development/http-part1/)
+- [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/)
